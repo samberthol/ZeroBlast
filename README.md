@@ -12,7 +12,7 @@ The primary objective is to process high-resolution magnetometry rasters and ide
 <p align="center">
   <img src="results/Screenshot.png" alt="Graphical representation" width="400">
   <br>
-  <em>Figure 1: Operational view drawn as a .png, demonstrating the Ensemble's GeoJSON predictions (points) overlaid on a high-resolution magnetometry raster.</em>
+  <em>Figure 1: Operational view drawn as a .png, demonstrating the Ensemble's GeoJSON predictions (points) and ground truth (circles) overlaid on a high-resolution magnetometry raster. The system enables rapid visual validation and spatial querying of potential UXO targets within standard GIS environments.</em>
 </p>
 
 > **Data Confidentiality & Model Weights**: The data used to train these models is confidential and restricted. Consequently, the pre-trained model weights cannot be shared publicly. This repository is intended solely to share the **scientific methodology, architectural breakthroughs, and reproduction scripts** developed during the project.
