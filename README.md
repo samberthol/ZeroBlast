@@ -51,13 +51,27 @@ Several specific techniques were implemented to reach the 96% recall ceiling:
 
 ---
 
-## 3. Source Data
+## 3. Source Data & Representation
+The system is trained and evaluated on anonymized geophysical data streams, focusing on the physical signatures of buried metallic objects.
 
-The system is trained and evaluated on two primary data streams:
-1.  **Magnetometry Rasters (TMI)**: High-resolution Total Magnetic Intensity maps (GeoTIFF).
-    -   *Preprocessing*: Gaussian High-Pass Filter (removes geological trends).
-    -   *Resolution*: 0.10m to 0.20m per pixel.
-2.  **Ground Truth Vectors**: GPS coordinates of physically verified targets.
+### 3.1 Magnetometry Rasters (TMI)
+High-resolution **Total Magnetic Intensity (TMI)** maps are provided as GeoTIFF rasters.
+- **Resolution**: 0.10m to 0.20m per pixel, capturing fine-grained magnetic anomalies.
+- **Training Statistics**: The models were trained on a massive database of **20,465 verified ground truth targets** (excluding the evaluation hold-out zone).
+- **Normalization (Gaussian HPF)**: To remove regional geological trends and sensor drift (instrumental noise), we apply a **Gaussian High-Pass Filter ($ \sigma = 64.0 $)**. This isolates the high-frequency magnetic signatures of discrete objects from the low-frequency geological background. Earlier attempts with complex equivalent source modeling were phased out in favor of this more numerically stable and robust normalization.
+
+### 3.2 Physics-Informed Ground Truth (Inverse-RTP)
+Ground truth targets are represented as GPS coordinates of verified objects. 
+- **The Dipole Challenge**: In non-polar regions, a magnetic target generates a dipolar anomaly where the peak is offset from the object's physical center.
+- **Label Shifting**: Instead of the computationally expensive Reduction-to-Pole (RTP) on rasters, we perform **Inverse-RTP** on the labels. We use the `harmonica` library to model the expected magnetic peak based on the Earth's field ($\text{inclination} = 60^\circ$) and "burn" the training mask at this **shifted peak**. This ensures the model directly learns the relationship between the visible anomaly and the training label.
+
+### 3.3 Multi-Scale Heatmap Regression
+Targets are classified into three archetypes based on their mass and depth, each requiring a different spatial representation in the training heatmaps:
+- **Family A (Large/Deep)**: 2.0m radius ($20 \text{ px}$) - Massive anomalies requiring broad contextual detection. **(603 targets used in training)**.
+- **Family B (Medium)**: 1.0m radius ($10 \text{ px}$) - Balanced spatial signatures. **(2,614 targets used in training)**.
+- **Family C (Tiny/Sub-surface)**: 0.4m radius ($4 \text{ px}$) - High-precision targets that are easily lost to noise. **(17,248 targets used in training)**.
+
+This multi-scale strategy prevents "target erasure" during network downsampling and ensures the loss function is appropriately weighted for each object class.
 
 ---
 
@@ -82,7 +96,7 @@ The system fuses predictions from five distinct models, selected via a rigorous 
 
 ## 5. Performance Results (Zone 19)
 
-The Ultimate Ensemble was benchmarked on "Zone 19," a rigorous hold-out region containing complex noise and varied target types.
+To ensure scientific rigor, all models were benchmarked on a completely independent, "never seen before" hold-out raster containing **1,404 verified targets** amidst complex geological noise. This blind evaluation ensures that the reported metrics reflect true operational performance on unseen data.
 
 ### Primary Metrics (3m Buffer)
 -   **Recall**: **96.22%** (New SOTA)
@@ -118,4 +132,4 @@ For detailed reproduction steps, please refer to [HOWTO.md](./HOWTO.md).
 
 ---
 
-*Project ZeroBlast - Advanced Machine Learning for Humanitarian De-mining*
+*Project ZeroBlast - Advanced Machine Learning for De-mining*
