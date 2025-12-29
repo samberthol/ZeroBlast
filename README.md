@@ -87,6 +87,12 @@ The system fuses predictions from five distinct models, selected via a rigorous 
 | **SegFormer** | **SegFormer (B0)** | A lightweight transformer that excels at distinguishing complex geological noise from true signals. | 0.838 | 0.873 | 0.855 |
 | **YOLO** | **YOLO11** | A distinct regression paradigm that "looks" for discrete objects rather than segmenting pixels. Adds crucial diversity. | 0.884 | 0.841 | **0.862** |
 
+- **Training Infrastructure**: All models in the Ultimate Ensemble were trained using **Vertex AI Custom Jobs** on **NVIDIA Tesla A100 (40GB)** GPUs (`a2-highgpu-1g`). This high-performance compute enabled massive effective batch sizes (up to 512 via gradient accumulation) and rapid convergence.
+- **Hyperparameter Strategy**: Constituents were optimized with a tiered approach:
+    - **Transformers (Swin, SegFormer)**: 500 epochs, $1\cdot 10^{-4}$ learning rate, AdamW optimizer with $0.01$ weight decay.
+    - **CNNs (HRNet, U-Net)**: 200-500 epochs, $2\cdot 10^{-4}$ learning rate, specialized stability via Adaptive Wing Loss.
+    - **Object Detection (YOLO)**: 100 epochs, batch size 256, optimized for discrete target signatures.
+
 **Fusion Mechanism**: The Ultimate Ensemble utilizes **Weighted Box Fusion (WBF)** rather than standard NMS. Instead of discarding overlapping detections, WBF calculates a confidence-weighted average of the results from all five models, converging on a "Consensus Centroid." This mathematical smoothing is the primary driver behind our record-breaking **89.4% Recall @ 1m**, as it effectively eliminates individual model spatial offsets.
 
 ![Ultimate Ensemble Performance Overlay](results/ultimate_ensemble_performance.png)
