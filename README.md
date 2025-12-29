@@ -103,7 +103,7 @@ The system fuses predictions from five distinct models, selected via a rigorous 
 
 ---
 
-## 5. Performance Results (Zone 19)
+## 5. Performance Results
 
 To ensure scientific rigor, all models were benchmarked on a completely independent, "never seen before" hold-out raster containing **1,404 verified targets** amidst complex geological noise. This blind evaluation ensures that the reported metrics reflect true operational performance on unseen data.
 
