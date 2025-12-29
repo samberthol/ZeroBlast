@@ -9,6 +9,9 @@ The primary objective is to process high-resolution magnetometry rasters and ide
 > [!NOTE]
 > **GIS Integration**: The system generates standardized **GeoJSON** prediction layers designed for seamless integration into environmental engineering workflows. These outputs are optimized for visualization and spatial analysis within [QGIS](https://qgis.org/), the leading open-source Geographic Information System.
 
+![Graphical representation](results/Screenshot.png)
+*Figure 1: Operational view drawn as a .png, demonstrating the Ensemble's GeoJSON predictions (points) overlaid on a high-resolution magnetometry raster. The system enables rapid visual validation and spatial querying of potential UXO targets within standard GIS environments.*
+
 > **Data Confidentiality & Model Weights**: The data used to train these models is confidential and restricted. Consequently, the pre-trained model weights cannot be shared publicly. This repository is intended solely to share the **scientific methodology, architectural breakthroughs, and reproduction scripts** developed during the project.
 
 ---
@@ -99,7 +102,7 @@ The system fuses predictions from five distinct models, selected via a rigorous 
 **Fusion Mechanism**: The Ultimate Ensemble utilizes **Weighted Box Fusion (WBF)** rather than standard NMS. Instead of discarding overlapping detections, WBF calculates a confidence-weighted average of the results from all five models, converging on a "Consensus Centroid." This mathematical smoothing is the primary driver behind our record-breaking **89.4% Recall @ 1m**, as it effectively eliminates individual model spatial offsets.
 
 ![Ultimate Ensemble Performance Overlay](results/ultimate_ensemble_performance.png)
-*Figure 1: Ultimate Ensemble predictions overlaid on TMI data, showcasing the high-density recall achieved via multi-model fusion.*
+*Figure 2: Ultimate Ensemble predictions overlaid on TMI data, showcasing the high-density recall achieved via multi-model fusion.*
 
 ---
 
