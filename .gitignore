@@ -13,3 +13,4 @@ results/inference/
 !results/analysis_notes/*.md
 weights/swin_best.pth
 weights/unet_best.pth
+weights/
