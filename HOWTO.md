@@ -12,7 +12,7 @@ This guide details the step-by-step process to reproduce the **Ultimate 5-Way En
 -   `scripts/segformer/`: **Transformer-based Segmentation**.
 -   `scripts/yolo/`: **Discrete Object Detection** (YOLO11).
 -   `ensemble/`: **Fusion Logic** (`ensemble_5way.py`) to combine predictions.
--   `weights/`: Pre-trained model weights (Checkpoints).
+-   `ensemble/`: **Fusion Logic** (`ensemble_5way.py`) to combine predictions.
 -   `results/`: Benchmarks and evaluation metrics.
 
 ---
@@ -84,7 +84,7 @@ Generate the specific heatmaps (or GeoJSONs for YOLO) required for the ensemble.
 python3 scripts/hrnet/predict.py \
     --input-raster data/raw/zone_19_mag.tif \
     --output-raster results/inference/hrnet_heatmap.tif \
-    --model weights/hrnet_best.pth
+    --model <path/to/your/hrnet_best.pth>
 ```
 *(Repeat for Swin, U-Net, and SegFormer using their respective scripts and weights)*
 
@@ -94,7 +94,7 @@ Use the YOLO `predict.py` to generate a GeoJSON of bounding boxes/points.
 python3 scripts/yolo/predict.py \
     --input-raster data/raw/zone_19_mag.tif \
     --output-geojson results/inference/yolo_preds.geojson \
-    --model weights/yolo_best.pt
+    --model <path/to/your/yolo_best.pt>
 ```
 
 ### Step 4: 5-Way Ultimate Fusion

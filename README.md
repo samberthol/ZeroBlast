@@ -6,6 +6,9 @@
 
 The primary objective is to process high-resolution magnetometry rasters and identify magnetic anomalies corresponding to buried ferromagnetic targets. The **Ultimate** release represents the culmination of this research, delivering a 5-model ensemble that achieves a safety-critical **96.2% Recall** rate, radically outperforming traditional signal processing methods.
 
+> [!IMPORTANT]
+> **Data Confidentiality & Model Weights**: The data used to train these models is highly confidential and restricted. Consequently, the pre-trained model weights cannot be shared publicly. This repository is intended solely to share the **scientific methodology, architectural breakthroughs, and reproduction scripts** developed during the project.
+
 ---
 
 ## 2. Scientific Methodology
@@ -84,7 +87,6 @@ release/v62-Ultimate/
 │   ├── segformer/  # SegFormer Training Code
 │   └── yolo/       # YOLO11 Training Code
 ├── ensemble/       # Fusion Logic (WBF) & Evaluation Scripts
-├── weights/        # Pre-trained Model Checkpoints (x5)
 └── results/        # Detailed CSV Benchmarks & Visualizations
 ```
 
