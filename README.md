@@ -1,4 +1,4 @@
-# Project ZeroBlast: Ultimate UXO Detection System
+# Project ZeroBlast: Machine Learning for UXO Detection
 
 ## 1. Project Overview
 
@@ -57,7 +57,7 @@ The system is trained and evaluated on anonymized geophysical data streams, focu
 ### 3.1 Magnetometry Rasters (TMI)
 High-resolution **Total Magnetic Intensity (TMI)** maps are provided as GeoTIFF rasters.
 - **Resolution**: 0.10m to 0.20m per pixel, capturing fine-grained magnetic anomalies.
-- **Training Statistics**: The models were trained on a massive database of **20,465 verified ground truth targets** (excluding the evaluation hold-out zone).
+- **Training Statistics**: The models were trained on a database of **20,465 verified ground truth targets** (excluding the evaluation hold-out zone).
 - **Normalization (Gaussian HPF)**: To remove regional geological trends and sensor drift (instrumental noise), we apply a **Gaussian High-Pass Filter ($ \sigma = 64.0 $)**. This isolates the high-frequency magnetic signatures of discrete objects from the low-frequency geological background. Earlier attempts with complex equivalent source modeling were phased out in favor of this more numerically stable and robust normalization.
 
 ### 3.2 Physics-Informed Ground Truth (Inverse-RTP)
@@ -79,13 +79,13 @@ This multi-scale strategy prevents "target erasure" during network downsampling 
 
 The system fuses predictions from five distinct models, selected via a rigorous "Tournament" process.
 
-| Model | Architecture | Role / Strength |
-| :--- | :--- | :--- |
-| **Swin** | **Swin Transformer (Tiny)** | **The Generalist.** Uses shifted window attention to capture mid-range dependencies. Excellent balance of precision and recall. |
-| **U-Net** | **Stabilized U-Net** | **The Safety Net.** Trained with a massive effective batch size (512) to be extremely sensitive. Highest individual recall. |
-| **HRNet** | **HRNet (High-Res Net)** | **The Sniper.** Maintains high-resolution representations throughout the network. Provides the most spatially precise peak localization. |
-| **SegFormer** | **SegFormer (B0)** | **The Context Awareness.** A lightweight transformer that excels at distinguishing complex geological noise from true signals. |
-| **YOLO** | **YOLO11** | **The Object Detector.** A distinct regression paradigm that "looks" for discrete objects rather than segmenting pixels. Adds crucial diversity. |
+| Model | Architecture | Role / Strength | Precision | Recall | F1-Score |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Swin** | **Swin Transformer (Tiny)** | Uses shifted window attention to capture mid-range dependencies. Excellent balance of precision and recall. | 0.957 | 0.622 | 0.754 |
+| **U-Net** | **Stabilized U-Net** | Trained with a massive effective batch size (512) to be extremely sensitive. Highest individual recall. | 0.114 | **0.998** | 0.205 |
+| **HRNet** | **HRNet (High-Res Net)** | Maintains high-resolution representations throughout the network. Provides the most spatially precise peak localization. | **0.921** | 0.806 | 0.860 |
+| **SegFormer** | **SegFormer (B0)** | A lightweight transformer that excels at distinguishing complex geological noise from true signals. | 0.838 | 0.873 | 0.855 |
+| **YOLO** | **YOLO11** | A distinct regression paradigm that "looks" for discrete objects rather than segmenting pixels. Adds crucial diversity. | 0.884 | 0.841 | **0.862** |
 
 **Fusion Mechanism**: The Ultimate Ensemble utilizes **Weighted Box Fusion (WBF)** rather than standard NMS. Instead of discarding overlapping detections, WBF calculates a confidence-weighted average of the results from all five models, converging on a "Consensus Centroid." This mathematical smoothing is the primary driver behind our record-breaking **89.4% Recall @ 1m**, as it effectively eliminates individual model spatial offsets.
 
