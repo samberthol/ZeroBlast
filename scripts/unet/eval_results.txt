@@ -1,0 +1,237 @@
+==========================================================
+v60 Zone 19 Evaluation Results
+==========================================================
+
+--- Threshold: 90% ---
+1m Buffer:
+2025-12-26 08:56:07 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:07 - INFO - Loading predictions from: scripts/v60/preds/preds_t90.geojson
+2025-12-26 08:56:07 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:07 - INFO - Evaluating 24 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:07 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:07 - INFO - Matching Distance: 1.0 meters
+2025-12-26 08:56:07 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:07 - INFO - Total Predictions in Zone:          24
+2025-12-26 08:56:07 - INFO - 
+2025-12-26 08:56:07 - INFO - True Positives (Detected Targets): 17
+2025-12-26 08:56:07 - INFO - False Positives (Bad Predictions): 9
+2025-12-26 08:56:07 - INFO - False Negatives (Missed Targets):  1387
+2025-12-26 08:56:07 - INFO - 
+2025-12-26 08:56:07 - INFO - Precision: 0.6538
+2025-12-26 08:56:07 - INFO - Recall:    0.0121
+2025-12-26 08:56:07 - INFO - F1-Score:  0.0238
+2025-12-26 08:56:07 - INFO - ---------------------------
+
+3m Buffer:
+2025-12-26 08:56:08 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:08 - INFO - Loading predictions from: scripts/v60/preds/preds_t90.geojson
+2025-12-26 08:56:08 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:08 - INFO - Evaluating 24 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:08 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:08 - INFO - Matching Distance: 3.0 meters
+2025-12-26 08:56:08 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:08 - INFO - Total Predictions in Zone:          24
+2025-12-26 08:56:08 - INFO - 
+2025-12-26 08:56:08 - INFO - True Positives (Detected Targets): 26
+2025-12-26 08:56:08 - INFO - False Positives (Bad Predictions): 5
+2025-12-26 08:56:08 - INFO - False Negatives (Missed Targets):  1378
+2025-12-26 08:56:08 - INFO - 
+2025-12-26 08:56:08 - INFO - Precision: 0.8485
+2025-12-26 08:56:08 - INFO - Recall:    0.0185
+2025-12-26 08:56:08 - INFO - F1-Score:  0.0362
+2025-12-26 08:56:08 - INFO - ---------------------------
+
+--- Threshold: 80% ---
+1m Buffer:
+2025-12-26 08:56:09 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:10 - INFO - Loading predictions from: scripts/v60/preds/preds_t80.geojson
+2025-12-26 08:56:10 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:10 - INFO - Evaluating 82 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:10 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:10 - INFO - Matching Distance: 1.0 meters
+2025-12-26 08:56:10 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:10 - INFO - Total Predictions in Zone:          82
+2025-12-26 08:56:10 - INFO - 
+2025-12-26 08:56:10 - INFO - True Positives (Detected Targets): 63
+2025-12-26 08:56:10 - INFO - False Positives (Bad Predictions): 22
+2025-12-26 08:56:10 - INFO - False Negatives (Missed Targets):  1341
+2025-12-26 08:56:10 - INFO - 
+2025-12-26 08:56:10 - INFO - Precision: 0.7412
+2025-12-26 08:56:10 - INFO - Recall:    0.0449
+2025-12-26 08:56:10 - INFO - F1-Score:  0.0846
+2025-12-26 08:56:10 - INFO - ---------------------------
+
+3m Buffer:
+2025-12-26 08:56:11 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:11 - INFO - Loading predictions from: scripts/v60/preds/preds_t80.geojson
+2025-12-26 08:56:11 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:11 - INFO - Evaluating 82 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:11 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:11 - INFO - Matching Distance: 3.0 meters
+2025-12-26 08:56:11 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:11 - INFO - Total Predictions in Zone:          82
+2025-12-26 08:56:11 - INFO - 
+2025-12-26 08:56:11 - INFO - True Positives (Detected Targets): 110
+2025-12-26 08:56:11 - INFO - False Positives (Bad Predictions): 8
+2025-12-26 08:56:11 - INFO - False Negatives (Missed Targets):  1294
+2025-12-26 08:56:11 - INFO - 
+2025-12-26 08:56:11 - INFO - Precision: 0.9355
+2025-12-26 08:56:11 - INFO - Recall:    0.0783
+2025-12-26 08:56:11 - INFO - F1-Score:  0.1446
+2025-12-26 08:56:11 - INFO - ---------------------------
+
+--- Threshold: 50% ---
+1m Buffer:
+2025-12-26 08:56:12 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:12 - INFO - Loading predictions from: scripts/v60/preds/preds_t50.geojson
+2025-12-26 08:56:12 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:12 - INFO - Evaluating 1012 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:12 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:12 - INFO - Matching Distance: 1.0 meters
+2025-12-26 08:56:12 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:12 - INFO - Total Predictions in Zone:          1012
+2025-12-26 08:56:12 - INFO - 
+2025-12-26 08:56:12 - INFO - True Positives (Detected Targets): 881
+2025-12-26 08:56:12 - INFO - False Positives (Bad Predictions): 140
+2025-12-26 08:56:12 - INFO - False Negatives (Missed Targets):  523
+2025-12-26 08:56:12 - INFO - 
+2025-12-26 08:56:12 - INFO - Precision: 0.8629
+2025-12-26 08:56:12 - INFO - Recall:    0.6275
+2025-12-26 08:56:12 - INFO - F1-Score:  0.7266
+2025-12-26 08:56:12 - INFO - ---------------------------
+
+3m Buffer:
+2025-12-26 08:56:13 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:14 - INFO - Loading predictions from: scripts/v60/preds/preds_t50.geojson
+2025-12-26 08:56:14 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:14 - INFO - Evaluating 1012 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:14 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:14 - INFO - Matching Distance: 3.0 meters
+2025-12-26 08:56:14 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:14 - INFO - Total Predictions in Zone:          1012
+2025-12-26 08:56:14 - INFO - 
+2025-12-26 08:56:14 - INFO - True Positives (Detected Targets): 1076
+2025-12-26 08:56:14 - INFO - False Positives (Bad Predictions): 87
+2025-12-26 08:56:14 - INFO - False Negatives (Missed Targets):  328
+2025-12-26 08:56:14 - INFO - 
+2025-12-26 08:56:14 - INFO - Precision: 0.9432
+2025-12-26 08:56:14 - INFO - Recall:    0.7664
+2025-12-26 08:56:14 - INFO - F1-Score:  0.8457
+2025-12-26 08:56:14 - INFO - ---------------------------
+
+--- Threshold: 30% ---
+1m Buffer:
+2025-12-26 08:56:15 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:15 - INFO - Loading predictions from: scripts/v60/preds/preds_t30.geojson
+2025-12-26 08:56:15 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:15 - INFO - Evaluating 1388 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:15 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:15 - INFO - Matching Distance: 1.0 meters
+2025-12-26 08:56:15 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:15 - INFO - Total Predictions in Zone:          1388
+2025-12-26 08:56:15 - INFO - 
+2025-12-26 08:56:15 - INFO - True Positives (Detected Targets): 1052
+2025-12-26 08:56:15 - INFO - False Positives (Bad Predictions): 344
+2025-12-26 08:56:15 - INFO - False Negatives (Missed Targets):  352
+2025-12-26 08:56:15 - INFO - 
+2025-12-26 08:56:15 - INFO - Precision: 0.7539
+2025-12-26 08:56:15 - INFO - Recall:    0.7493
+2025-12-26 08:56:15 - INFO - F1-Score:  0.7516
+2025-12-26 08:56:15 - INFO - ---------------------------
+
+3m Buffer:
+2025-12-26 08:56:16 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:16 - INFO - Loading predictions from: scripts/v60/preds/preds_t30.geojson
+2025-12-26 08:56:16 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:16 - INFO - Evaluating 1388 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:16 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:16 - INFO - Matching Distance: 3.0 meters
+2025-12-26 08:56:16 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:16 - INFO - Total Predictions in Zone:          1388
+2025-12-26 08:56:16 - INFO - 
+2025-12-26 08:56:16 - INFO - True Positives (Detected Targets): 1249
+2025-12-26 08:56:16 - INFO - False Positives (Bad Predictions): 245
+2025-12-26 08:56:16 - INFO - False Negatives (Missed Targets):  155
+2025-12-26 08:56:16 - INFO - 
+2025-12-26 08:56:16 - INFO - Precision: 0.8796
+2025-12-26 08:56:16 - INFO - Recall:    0.8896
+2025-12-26 08:56:16 - INFO - F1-Score:  0.8846
+2025-12-26 08:56:16 - INFO - ---------------------------
+
+--- Threshold: 20% ---
+1m Buffer:
+2025-12-26 08:56:17 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:17 - INFO - Loading predictions from: scripts/v60/preds/preds_t20.geojson
+2025-12-26 08:56:18 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:18 - INFO - Evaluating 17821 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:18 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:18 - INFO - Matching Distance: 1.0 meters
+2025-12-26 08:56:18 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:18 - INFO - Total Predictions in Zone:          17821
+2025-12-26 08:56:18 - INFO - 
+2025-12-26 08:56:18 - INFO - True Positives (Detected Targets): 1130
+2025-12-26 08:56:18 - INFO - False Positives (Bad Predictions): 16700
+2025-12-26 08:56:18 - INFO - False Negatives (Missed Targets):  274
+2025-12-26 08:56:18 - INFO - 
+2025-12-26 08:56:18 - INFO - Precision: 0.0635
+2025-12-26 08:56:18 - INFO - Recall:    0.8048
+2025-12-26 08:56:18 - INFO - F1-Score:  0.1177
+2025-12-26 08:56:18 - INFO - ---------------------------
+
+3m Buffer:
+2025-12-26 08:56:18 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:19 - INFO - Loading predictions from: scripts/v60/preds/preds_t20.geojson
+2025-12-26 08:56:19 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:19 - INFO - Evaluating 17821 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:19 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:19 - INFO - Matching Distance: 3.0 meters
+2025-12-26 08:56:19 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:19 - INFO - Total Predictions in Zone:          17821
+2025-12-26 08:56:19 - INFO - 
+2025-12-26 08:56:19 - INFO - True Positives (Detected Targets): 1326
+2025-12-26 08:56:19 - INFO - False Positives (Bad Predictions): 16550
+2025-12-26 08:56:19 - INFO - False Negatives (Missed Targets):  78
+2025-12-26 08:56:19 - INFO - 
+2025-12-26 08:56:19 - INFO - Precision: 0.1059
+2025-12-26 08:56:19 - INFO - Recall:    0.9444
+2025-12-26 08:56:19 - INFO - F1-Score:  0.1905
+2025-12-26 08:56:19 - INFO - ---------------------------
+
+--- Threshold: 10% ---
+1m Buffer:
+2025-12-26 08:56:20 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:20 - INFO - Loading predictions from: scripts/v60/preds/preds_t10.geojson
+2025-12-26 08:56:20 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:20 - INFO - Evaluating 21768 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:20 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:20 - INFO - Matching Distance: 1.0 meters
+2025-12-26 08:56:20 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:20 - INFO - Total Predictions in Zone:          21768
+2025-12-26 08:56:20 - INFO - 
+2025-12-26 08:56:20 - INFO - True Positives (Detected Targets): 1209
+2025-12-26 08:56:20 - INFO - False Positives (Bad Predictions): 20567
+2025-12-26 08:56:20 - INFO - False Negatives (Missed Targets):  195
+2025-12-26 08:56:20 - INFO - 
+2025-12-26 08:56:20 - INFO - Precision: 0.0557
+2025-12-26 08:56:20 - INFO - Recall:    0.8611
+2025-12-26 08:56:20 - INFO - F1-Score:  0.1046
+2025-12-26 08:56:20 - INFO - ---------------------------
+
+3m Buffer:
+2025-12-26 08:56:21 - INFO - Loading ground truth from: scripts/v57/cibles.geojson
+2025-12-26 08:56:22 - INFO - Loading predictions from: scripts/v60/preds/preds_t10.geojson
+2025-12-26 08:56:22 - INFO - Using hold-out raster for filtering: zone_19.tif
+2025-12-26 08:56:22 - INFO - Evaluating 21768 predictions against 1404 ground truth targets for the hold-out zone...
+2025-12-26 08:56:22 - INFO - --- Evaluation Complete ---
+2025-12-26 08:56:22 - INFO - Matching Distance: 3.0 meters
+2025-12-26 08:56:22 - INFO - Total Ground Truth Targets in Zone: 1404
+2025-12-26 08:56:22 - INFO - Total Predictions in Zone:          21768
+2025-12-26 08:56:22 - INFO - 
+2025-12-26 08:56:22 - INFO - True Positives (Detected Targets): 1401
+2025-12-26 08:56:22 - INFO - False Positives (Bad Predictions): 20001
+2025-12-26 08:56:22 - INFO - False Negatives (Missed Targets):  3
+2025-12-26 08:56:22 - INFO - 
+2025-12-26 08:56:22 - INFO - Precision: 0.1141
+2025-12-26 08:56:22 - INFO - Recall:    0.9979
+2025-12-26 08:56:22 - INFO - F1-Score:  0.2048
+2025-12-26 08:56:22 - INFO - ---------------------------

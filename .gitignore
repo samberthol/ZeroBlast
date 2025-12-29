@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+runs/
+data/
+results/inference/
+*.tif
+*.geojson
+!results/benchmark_results.md
+!results/eval_results.csv
+!results/*.png
+!results/analysis_notes/*.md
+weights/swin_best.pth
+weights/unet_best.pth
