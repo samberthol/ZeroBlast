@@ -75,7 +75,7 @@ The system fuses predictions from five distinct models, selected via a rigorous 
 
 **Fusion Mechanism**: The Ultimate Ensemble utilizes **Weighted Box Fusion (WBF)** rather than standard NMS. Instead of discarding overlapping detections, WBF calculates a confidence-weighted average of the results from all five models, converging on a "Consensus Centroid." This mathematical smoothing is the primary driver behind our record-breaking **89.4% Recall @ 1m**, as it effectively eliminates individual model spatial offsets.
 
-![Ultimate Ensemble Performance Overlay](file:///usr/local/google/home/sberthollier/Code/pyro-remediation/release/v62-Ultimate/results/ultimate_ensemble_performance.png)
+![Ultimate Ensemble Performance Overlay](results/ultimate_ensemble_performance.png)
 *Figure 1: Ultimate Ensemble predictions overlaid on TMI data, showcasing the high-density recall achieved via multi-model fusion.*
 
 ---
