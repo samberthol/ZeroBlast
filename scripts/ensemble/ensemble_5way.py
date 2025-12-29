@@ -122,34 +122,43 @@ def weighted_box_fusion_5(gdfs, names, weights, distance_threshold=3.0):
 
 def main():
     parser = argparse.ArgumentParser(description="v60+v62 5-model point-based ensemble")
+    parser.add_argument("--swin", help="Path to Swin heatmap .tif")
+    parser.add_argument("--unet", help="Path to UNet heatmap .tif")
+    parser.add_argument("--hrnet", help="Path to HRNet heatmap .tif")
+    parser.add_argument("--segformer", help="Path to SegFormer heatmap .tif")
+    parser.add_argument("--yolo", help="Path to YOLO predictions .geojson")
     parser.add_argument("--dist", type=float, default=3.0, help="Distance threshold for fusion (meters)")
-    parser.add_argument("--output", default="results/v62/inference/ensemble_5way.geojson", help="Output path")
+    parser.add_argument("--output", default="results/v62-Ultimate/results/ultimate_fused.geojson", help="Output path")
     args = parser.parse_args()
 
-    # Paths
-    swin_h = "scripts/ensemble/zone_19_swin_heatmap.tif"
-    unet_h = "scripts/unet/zone_19_heatmap.tif"
-    hrnet_h = "results/inference/hrnet_heatmap.tif"
-    segformer_h = "results/inference/segformer_heatmap.tif"
-    yolo_g = "results/inference/yolo_preds.geojson"
+    # Paths (Default fallbacks if not provided)
+    swin_h = args.swin or "results/inference/swin_heatmap.tif"
+    unet_h = args.unet or "results/inference/unet_heatmap.tif"
+    hrnet_h = args.hrnet or "results/inference/hrnet_heatmap.tif"
+    segformer_h = args.segformer or "results/inference/segformer_heatmap.tif"
+    yolo_g = args.yolo or "results/inference/yolo_preds.geojson"
     
     logging.info(f"5-Way Fusion Distance: {args.dist}m")
     
-    logging.info("Extracting Swin peaks (threshold=0.20)...")
+    logging.info(f"Extracting Swin peaks (from {swin_h}, threshold=0.20)...")
     gdf_swin = extract_peaks(swin_h, threshold=0.20)
     
-    logging.info("Extracting UNet peaks (threshold=0.30)...")
+    logging.info(f"Extracting UNet peaks (from {unet_h}, threshold=0.30)...")
     gdf_unet = extract_peaks(unet_h, threshold=0.30)
     
-    logging.info("Extracting HRNet peaks (threshold=0.10)...")
+    logging.info(f"Extracting HRNet peaks (from {hrnet_h}, threshold=0.10)...")
     gdf_hrnet = extract_peaks(hrnet_h, threshold=0.10)
     
-    logging.info("Extracting SegFormer peaks (threshold=0.10)...")
+    logging.info(f"Extracting SegFormer peaks (from {segformer_h}, threshold=0.10)...")
     gdf_segformer = extract_peaks(segformer_h, threshold=0.10)
     
-    logging.info("Loading YOLO detections...")
-    gdf_yolo = gpd.read_file(yolo_g)
-    gdf_yolo = spatial_nms(gdf_yolo, distance_threshold=2.0)
+    if os.path.exists(yolo_g):
+        logging.info(f"Loading YOLO detections (from {yolo_g})...")
+        gdf_yolo = gpd.read_file(yolo_g)
+        gdf_yolo = spatial_nms(gdf_yolo, distance_threshold=2.0)
+    else:
+        logging.warning(f"YOLO detections not found at {yolo_g}")
+        gdf_yolo = None
     
     gdfs = [gdf_swin, gdf_unet, gdf_hrnet, gdf_segformer, gdf_yolo]
     names = ["swin", "unet", "hrnet", "segformer", "yolo"]
@@ -159,6 +168,7 @@ def main():
     fused_gdf = weighted_box_fusion_5(gdfs, names, weights, distance_threshold=args.dist)
     
     if fused_gdf is not None:
+        os.makedirs(os.path.dirname(args.output), exist_ok=True)
         fused_gdf.to_file(args.output, driver='GeoJSON')
         logging.info(f"Saved {len(fused_gdf)} fused targets to {args.output}")
     else:

@@ -11,8 +11,7 @@ This guide details the step-by-step process to reproduce the **Ultimate 5-Way En
 -   `scripts/hrnet/`: **High-Resolution Net** (Spatial precision).
 -   `scripts/segformer/`: **Transformer-based Segmentation**.
 -   `scripts/yolo/`: **Discrete Object Detection** (YOLO11).
--   `ensemble/`: **Fusion Logic** (`ensemble_5way.py`) to combine predictions.
--   `ensemble/`: **Fusion Logic** (`ensemble_5way.py`) to combine predictions.
+-   `scripts/ensemble/`: **Fusion Logic** (`ensemble_5way.py`) to combine predictions.
 -   `results/`: Benchmarks and evaluation metrics.
 
 ---
@@ -21,13 +20,20 @@ This guide details the step-by-step process to reproduce the **Ultimate 5-Way En
 
 Ensure your environment has the following core dependencies installed:
 -   **Python 3.10+**
--   **PyTorch 2.0+** (with CUDA support)
+-   **PyTorch 2.3+** (with CUDA 12.1+ support)
 -   **Gdal / Rasterio** (Geospatial processing)
+-   **Timm** & **Einops** (Backbone and tensor manipulations)
+-   **Transformers** & **Huggingface-hub** (for SegFormer)
 -   **Ultralytics** (for YOLO11)
--   **Scikit-image** & **Scipy** (Post-processing)
+-   **OpenCV-Python** & **Pillow** (Image processing for detection)
+-   **Scikit-image**, **Scipy**, **Scikit-learn** (Post-processing and metrics)
+-   **Google-cloud-storage** (Data synchronization)
 
 ```bash
-pip install torch torchvision rasterio geopandas pandas shapely scikit-image scipy ultralytics tqdm google-cloud-storage
+pip install torch torchvision rasterio geopandas pandas shapely \
+            scikit-image scipy scikit-learn ultralytics tqdm \
+            google-cloud-storage timm einops transformers \
+            huggingface-hub opencv-python pillow
 ```
 
 ---
@@ -86,7 +92,7 @@ python3 scripts/hrnet/predict.py \
     --output-raster results/inference/hrnet_heatmap.tif \
     --model <path/to/your/hrnet_best.pth>
 ```
-*(Repeat for Swin, U-Net, and SegFormer using their respective scripts and weights)*
+*(Repeat for Swin, U-Net, and SegFormer, ensuring output filenames match `swin_heatmap.tif`, `unet_heatmap.tif`, and `segformer_heatmap.tif` in the `results/inference/` directory)*
 
 **YOLO (Object Detection):**
 Use the YOLO `predict.py` to generate a GeoJSON of bounding boxes/points.
@@ -100,18 +106,16 @@ python3 scripts/yolo/predict.py \
 ### Step 4: 5-Way Ultimate Fusion
 The final step combines the 5 predictions using **Weighted Box Fusion (WBF)**.
 
-**Critical**: Ensure the following files exist at these locations (or update `ensemble_5way.py` paths):
-1.  `scripts/ensemble/zone_19_swin_heatmap.tif`
-2.  `scripts/unet/zone_19_heatmap.tif`
-3.  `results/inference/hrnet_heatmap.tif`
-4.  `results/inference/segformer_heatmap.tif`
-5.  `results/inference/yolo_preds.geojson`
-
 **Run the Ensemble:**
 ```bash
-python3 ensemble/ensemble_5way.py \
+python3 scripts/ensemble/ensemble_5way.py \
+    --swin results/inference/swin_heatmap.tif \
+    --unet results/inference/unet_heatmap.tif \
+    --hrnet results/inference/hrnet_heatmap.tif \
+    --segformer results/inference/segformer_heatmap.tif \
+    --yolo results/inference/yolo_preds.geojson \
     --dist 3.0 \
-    --output release/v62-Ultimate/results/ultimate_fused.geojson
+    --output results/ultimate_fused.geojson
 ```
 *`--dist 3.0` sets the clustering distance to 3.0 meters (Operational safety margin).*
 
