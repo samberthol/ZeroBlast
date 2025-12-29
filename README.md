@@ -6,6 +6,9 @@
 
 The primary objective is to process high-resolution magnetometry rasters and identify magnetic anomalies corresponding to buried ferromagnetic targets. The **Ultimate** release represents the final iteration of this research, delivering a 5-model ensemble that achieves a safety-oriented **96.2% Recall** rate, outperforming traditional signal processing methods.
 
+> [!NOTE]
+> **GIS Integration**: The system generates standardized **GeoJSON** prediction layers designed for seamless integration into environmental engineering workflows. These outputs are optimized for visualization and spatial analysis within [QGIS](https://qgis.org/), the leading open-source Geographic Information System.
+
 > **Data Confidentiality & Model Weights**: The data used to train these models is confidential and restricted. Consequently, the pre-trained model weights cannot be shared publicly. This repository is intended solely to share the **scientific methodology, architectural breakthroughs, and reproduction scripts** developed during the project.
 
 ---
