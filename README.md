@@ -9,11 +9,13 @@ The primary objective is to process high-resolution magnetometry rasters and ide
 > [!NOTE]
 > **GIS Integration**: The system generates standardized **GeoJSON** prediction layers designed for seamless integration into environmental engineering workflows. These outputs are optimized for visualization and spatial analysis within [QGIS](https://qgis.org/), the leading open-source Geographic Information System.
 
+
 <p align="center">
   <img src="results/Screenshot.png" alt="Graphical representation" width="400">
   <br>
   <em>Figure 1: Operational view drawn as a .png, demonstrating the Ensemble's GeoJSON predictions (points) and ground truth (circles) overlaid on a high-resolution magnetometry raster. The system enables rapid visual validation and spatial querying of potential UXO targets within standard GIS environments.</em>
 </p>
+
 
 > **Data Confidentiality & Model Weights**: The data used to train these models is confidential and restricted. Consequently, the pre-trained model weights cannot be shared publicly. This repository is intended solely to share the **scientific methodology, architectural breakthroughs, and reproduction scripts** developed during the project.
 
@@ -29,7 +31,7 @@ Early experiments proved that standard segmentation failed because the "True" GP
 We developed **Label Shifting (Inverse RTP)**, a physics-informed strategy where we calculate the theoretical magnetic peak for each target using the dipole equation and shift the training label to align with this peak. This transforms the problem from "guess the hidden center" to "detect the visible anomaly," resulting in a robust, learnable task.
 
 ### 2.2 The "Ensemble" Hypothesis
-No single model architecture is perfect for all anomaly types (which range from tiny 1m surface clutter to deep 500kg bombs). The Ultimate system relies on **Architectural Diversity**:
+No single model architecture is perfect for all anomaly types (which range from tiny 1m surface clutter to deep 500kg bombs). The system relies on **Architectural Diversity**:
 - **Transformers** (Swin, SegFormer) excel at capturing global context and filtering noise.
 - **CNNS** (HRNet, U-Net) excel at precise, pixel-perfect spatial localization.
 - **Object Detectors** (YOLO) excel at learning discrete object signatures.
@@ -84,7 +86,7 @@ This multi-scale strategy prevents "target erasure" during network downsampling 
 
 ---
 
-## 4. The Ultimate Ensemble (5-Way)
+## 4. The Ensemble (5-Way)
 
 The system fuses predictions from five distinct models, selected via a rigorous "Tournament" process.
 
@@ -96,16 +98,16 @@ The system fuses predictions from five distinct models, selected via a rigorous 
 | **SegFormer** | **SegFormer (B0)** | A lightweight transformer that excels at distinguishing complex geological noise from true signals. | 0.838 | 0.873 | 0.855 |
 | **YOLO** | **YOLO11** | A distinct regression paradigm that "looks" for discrete objects rather than segmenting pixels. Adds crucial diversity. | 0.884 | 0.841 | **0.862** |
 
-- **Training Infrastructure**: All models in the Ultimate Ensemble were trained using **Vertex AI Custom Jobs** on **NVIDIA Tesla A100 (40GB)** GPUs (`a2-highgpu-1g`). This high-performance compute enabled massive effective batch sizes (up to 512 via gradient accumulation) and rapid convergence.
+- **Training Infrastructure**: All models in the Ensemble were trained using **Vertex AI Custom Jobs** on **NVIDIA Tesla A100 (40GB)** GPUs (`a2-highgpu-1g`). This high-performance compute enabled massive effective batch sizes (up to 512 via gradient accumulation) and rapid convergence.
 - **Hyperparameter Strategy**: Constituents were optimized with a tiered approach:
     - **Transformers (Swin, SegFormer)**: 500 epochs, $1\cdot 10^{-4}$ learning rate, AdamW optimizer with $0.01$ weight decay.
     - **CNNs (HRNet, U-Net)**: 200-500 epochs, $2\cdot 10^{-4}$ learning rate, specialized stability via Adaptive Wing Loss.
     - **Object Detection (YOLO)**: 100 epochs, batch size 256, optimized for discrete target signatures.
 
-**Fusion Mechanism**: The Ultimate Ensemble utilizes **Weighted Box Fusion (WBF)** rather than standard NMS. Instead of discarding overlapping detections, WBF calculates a confidence-weighted average of the results from all five models, converging on a "Consensus Centroid." This mathematical smoothing is the primary driver behind our record-breaking **89.4% Recall @ 1m**, as it effectively eliminates individual model spatial offsets.
+**Fusion Mechanism**: The Ensemble utilizes **Weighted Box Fusion (WBF)** rather than standard NMS. Instead of discarding overlapping detections, WBF calculates a confidence-weighted average of the results from all five models, converging on a "Consensus Centroid." This mathematical smoothing is the primary driver behind our record-breaking **89.4% Recall @ 1m**, as it effectively eliminates individual model spatial offsets.
 
-![Ultimate Ensemble Performance Overlay](results/ultimate_ensemble_performance.png)
-*Figure 2: Ultimate Ensemble predictions overlaid on TMI data, showcasing the high-density recall achieved via multi-model fusion.*
+![Ensemble Performance Overlay](results/ultimate_ensemble_performance.png)
+*Figure 2: Training and Validation losses for each model in the Ensemble. HRNet was not trained for it's full cycle as it was compute heavy (cutoff with a good enough best-model for a prototype)*
 
 ---
 
@@ -120,6 +122,7 @@ To ensure scientific rigor, all models were benchmarked on a completely independ
 
 ### Precision Breakthrough (1m Buffer)
 Historically, models struggled to pinpoint targets within 1 meter. The ensemble shatters this ceiling:
+-   **Precision @ 1m**: 58.2%
 -   **Recall @ 1m**: **89.4%**
 -   **F1 @ 1m**: 0.705
 
