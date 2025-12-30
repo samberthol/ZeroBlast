@@ -106,8 +106,12 @@ The system fuses predictions from five distinct models, selected via a rigorous 
 
 **Fusion Mechanism**: The Ensemble utilizes **Weighted Box Fusion (WBF)** rather than standard NMS. Instead of discarding overlapping detections, WBF calculates a confidence-weighted average of the results from all five models, converging on a "Consensus Centroid." This mathematical smoothing is the primary driver behind our record-breaking **89.4% Recall @ 1m**, as it effectively eliminates individual model spatial offsets.
 
-![Ensemble Performance Overlay](results/ultimate_ensemble_performance.png)
-*Figure 2: Training and Validation losses for each model in the Ensemble. HRNet was not trained for it's full cycle as it was compute heavy (cutoff with a good enough best-model for a prototype)*
+
+<p align="center">
+  <img src="results/ultimate_ensemble_performance.png" alt="Models Train / Validation Loss">
+  <br>
+  <em>Figure 2: Training and Validation losses for each model in the Ensemble. HRNet was not trained for it's full cycle as it was compute heavy (cutoff with a good enough best-model for a prototype)</em>
+</p>
 
 ---
 
@@ -116,14 +120,14 @@ The system fuses predictions from five distinct models, selected via a rigorous 
 To ensure scientific rigor, all models were benchmarked on a completely independent, "never seen before" hold-out raster containing **1,404 verified targets** amidst complex geological noise. This blind evaluation ensures that the reported metrics reflect true operational performance on unseen data.
 
 ### Primary Metrics (3m Buffer)
--   **Recall**: **96.22%** (New SOTA)
+-   **Recall**: **96.22%**
 -   **Precision**: 78.9%
 -   **F1-Score**: 0.867
 
 ### Precision Breakthrough (1m Buffer)
 Historically, models struggled to pinpoint targets within 1 meter. The ensemble shatters this ceiling:
--   **Precision @ 1m**: 58.2%
 -   **Recall @ 1m**: **89.4%**
+-   **Precision @ 1m**: 58.2%
 -   **F1 @ 1m**: 0.705
 
 *Note: A 3m buffer is the standard operational safety margin for remediation excavation.*
